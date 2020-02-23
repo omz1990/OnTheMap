@@ -11,11 +11,13 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var signupTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         getStudentLocations()
-        
+        addSignupLink()
     }
 
     func getStudentLocations() {
@@ -32,13 +34,33 @@ class LoginViewController: UIViewController {
                 print(responseObject)
                 print("Locations length: \(responseObject.results?.count ?? 0)")
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "loginComplete", sender: nil)
+//                    self.performSegue(withIdentifier: "loginComplete", sender: nil)
                 }
             } catch {
                 print(error)
             }
         }
         task.resume()
+    }
+    
+    private func addSignupLink() {
+    
+        let attributedString = NSMutableAttributedString(string: "Don't have an account? Sign Up")
+        let url = URL(string: "https://auth.udacity.com/sign-up?next=https://classroom.udacity.com/authenticated")!
+
+        attributedString.setAttributes([.link: url], range: NSMakeRange(23, 7))
+
+        self.signupTextView.attributedText = attributedString
+        self.signupTextView.isUserInteractionEnabled = true
+        self.signupTextView.isEditable = false
+        self.signupTextView.font = .systemFont(ofSize: 18.0)
+        self.signupTextView.textAlignment = .center
+
+        // Set how links should appear: blue and underlined
+        self.signupTextView.linkTextAttributes = [
+            .foregroundColor: UIColor.blue,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
     }
 }
 
