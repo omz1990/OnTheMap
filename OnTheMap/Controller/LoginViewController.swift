@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  OnTheMap
 //
 //  Created by Omar Mujtaba on 23/2/20.
@@ -9,12 +9,13 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         getStudentLocations()
+        
     }
 
     func getStudentLocations() {
@@ -30,6 +31,9 @@ class ViewController: UIViewController {
                 let responseObject = try decoder.decode(StudentLocationsResponse.self, from: data)
                 print(responseObject)
                 print("Locations length: \(responseObject.results?.count ?? 0)")
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "loginComplete", sender: nil)
+                }
             } catch {
                 print(error)
             }
