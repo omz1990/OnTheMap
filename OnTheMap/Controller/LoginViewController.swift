@@ -11,12 +11,15 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signupTextView: UITextView!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        getStudentLocations()
+//        getStudentLocations()
         addSignupLink()
     }
 
@@ -61,6 +64,38 @@ class LoginViewController: UIViewController {
             .foregroundColor: UIColor.blue,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
+    }
+    
+    @IBAction func loginClick(_ sender: Any) {
+        setLoggingIn(true)
+        UdacityClient.login(userName: emailTextField.text ?? "", password: passwordTextField.text ?? "", completion: handleLoginResponse(loggedIn:error:))
+    }
+    
+    private func handleLoginResponse(loggedIn: Bool, error: Error?) {
+        setLoggingIn(false)
+        if (loggedIn) {
+            // Get user data
+            showLoginFailure(message: error?.localizedDescription ?? "Logged in")
+        } else {
+            showLoginFailure(message: error?.localizedDescription ?? "Something went wrong")
+        }
+    }
+    
+    private func setLoggingIn(_ loggingIn: Bool) {
+        if loggingIn {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+        emailTextField.isEnabled = !loggingIn
+        passwordTextField.isEnabled = !loggingIn
+        loginButton.isEnabled = !loggingIn
+    }
+    
+    private func showLoginFailure(message: String) {
+        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        show(alertVC, sender: nil)
     }
 }
 
