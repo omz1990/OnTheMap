@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct StudentLocationResponse: Codable {
+struct StudentLocation: Codable {
     let objectId: String
-    let uniqueKey: String?
+    let uniqueKey: String
     let firstName: String
     let lastName: String
     let mapString: String

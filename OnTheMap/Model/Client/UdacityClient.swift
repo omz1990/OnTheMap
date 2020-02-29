@@ -140,11 +140,28 @@ class UdacityClient {
     
     class func getUserData(completion: @escaping (Bool, Error?) -> Void) {
         let url = Endpoints.getUserDetails(Session.accountId).url
-        let skipFirst5Characters = Endpoints.login.skipFirst5Characters
+        let skipFirst5Characters = Endpoints.getUserDetails(Session.accountId).skipFirst5Characters
         makeGETRequest(url: url, skipFirst5Characters: skipFirst5Characters, responseType: UserDataResponse.self) { (response, error) in
             if let response = response {
                 Session.firstName = response.firstName
                 Session.lastName = response.lastName
+                completion(true, nil)
+            } else {
+                completion(false, error)
+            }
+        }
+    }
+    
+    class func getStudentLocations(completion: @escaping (Bool, Error?) -> Void) {
+        let url = Endpoints.getStudentLocations.url
+        let skipFirst5Characters = Endpoints.getStudentLocations.skipFirst5Characters
+        makeGETRequest(url: url, skipFirst5Characters: skipFirst5Characters, responseType: StudentLocationsResponse.self) { (response, error) in
+            if let response = response {
+                guard let studentLocations = response.results else {
+                    completion(false, nil)
+                    return
+                }
+                LocationModel.studentLocations = studentLocations
                 completion(true, nil)
             } else {
                 completion(false, error)

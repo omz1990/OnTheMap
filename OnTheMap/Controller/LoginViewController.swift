@@ -84,14 +84,12 @@ class LoginViewController: UIViewController {
     private func handleGetUserDataResponse(success: Bool, error: Error?) {
         setLoggingIn(false)
         if (success) {
-            // Get user data
-            showLoginFailure(message: error?.localizedDescription ?? "Logged in: \(UdacityClient.Session.firstName) \(UdacityClient.Session.lastName)")
+            // Login complete
+            self.performSegue(withIdentifier: "loginComplete", sender: nil)
         } else {
             showLoginFailure(message: error?.localizedDescription ?? "Couldn't fetch your details")
         }
     }
-    
-    
     
     private func setLoggingIn(_ loggingIn: Bool) {
         if loggingIn {
