@@ -68,18 +68,30 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginClick(_ sender: Any) {
         setLoggingIn(true)
-        UdacityClient.login(userName: emailTextField.text ?? "", password: passwordTextField.text ?? "", completion: handleLoginResponse(loggedIn:error:))
+        UdacityClient.login(userName: emailTextField.text ?? "", password: passwordTextField.text ?? "", completion: handleLoginResponse(success:error:))
     }
     
-    private func handleLoginResponse(loggedIn: Bool, error: Error?) {
-        setLoggingIn(false)
-        if (loggedIn) {
+    private func handleLoginResponse(success: Bool, error: Error?) {
+        if (success) {
             // Get user data
-            showLoginFailure(message: error?.localizedDescription ?? "Logged in")
+            UdacityClient.getUserData(completion: handleGetUserDataResponse(success:error:))
         } else {
-            showLoginFailure(message: error?.localizedDescription ?? "Something went wrong")
+            setLoggingIn(false)
+            showLoginFailure(message: error?.localizedDescription ?? "Couldn't login")
         }
     }
+    
+    private func handleGetUserDataResponse(success: Bool, error: Error?) {
+        setLoggingIn(false)
+        if (success) {
+            // Get user data
+            showLoginFailure(message: error?.localizedDescription ?? "Logged in: \(UdacityClient.Session.firstName) \(UdacityClient.Session.lastName)")
+        } else {
+            showLoginFailure(message: error?.localizedDescription ?? "Couldn't fetch your details")
+        }
+    }
+    
+    
     
     private func setLoggingIn(_ loggingIn: Bool) {
         if loggingIn {

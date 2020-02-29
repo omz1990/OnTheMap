@@ -14,6 +14,7 @@
 		5686DCC4240A94540081F73F /* AccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCC3240A94540081F73F /* AccountResponse.swift */; };
 		5686DCC6240A94880081F73F /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCC5240A94880081F73F /* SessionResponse.swift */; };
 		5686DCC8240A970D0081F73F /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCC7240A970D0081F73F /* LoginResponse.swift */; };
+		5686DCCA240A9C280081F73F /* UserDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCC9240A9C270081F73F /* UserDataResponse.swift */; };
 		56CA238D24027843000D1CD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CA238C24027843000D1CD0 /* AppDelegate.swift */; };
 		56CA238F24027843000D1CD0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CA238E24027843000D1CD0 /* SceneDelegate.swift */; };
 		56CA239124027843000D1CD0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CA239024027843000D1CD0 /* LoginViewController.swift */; };
@@ -32,6 +33,7 @@
 		5686DCC3240A94540081F73F /* AccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponse.swift; sourceTree = "<group>"; };
 		5686DCC5240A94880081F73F /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		5686DCC7240A970D0081F73F /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		5686DCC9240A9C270081F73F /* UserDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataResponse.swift; sourceTree = "<group>"; };
 		56CA238924027843000D1CD0 /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CA238C24027843000D1CD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56CA238E24027843000D1CD0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				5686DCC3240A94540081F73F /* AccountResponse.swift */,
 				5686DCC5240A94880081F73F /* SessionResponse.swift */,
 				5686DCC7240A970D0081F73F /* LoginResponse.swift */,
+				5686DCC9240A9C270081F73F /* UserDataResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				5686DCC0240A92470081F73F /* CreateSessionUdacityRequest.swift in Sources */,
 				5686DCC8240A970D0081F73F /* LoginResponse.swift in Sources */,
 				56F4DAF02402966B00F859C3 /* StudentLocationsResponse.swift in Sources */,
+				5686DCCA240A9C280081F73F /* UserDataResponse.swift in Sources */,
 				5686DCC4240A94540081F73F /* AccountResponse.swift in Sources */,
 				56CA239124027843000D1CD0 /* LoginViewController.swift in Sources */,
 				5686DCBC240A83FF0081F73F /* UdacityClient.swift in Sources */,

@@ -11,8 +11,8 @@ import Foundation
 class UdacityClient {
     
     struct Session {
-        static var firstName = "Bruce"
-        static var lastName = "Wayne"
+        static var firstName = ""
+        static var lastName = ""
         static var accountId = ""
         static var sessionId = ""
     }
@@ -123,15 +123,29 @@ class UdacityClient {
     
     class func login(userName: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         let userData = CreateSessionUdacityRequest(username: userName, password: password)
-        let request = CreateSessionRequest(userData: userData)
+        let body = CreateSessionRequest(userData: userData)
         let url = Endpoints.login.url
         let skipFirst5Characters = Endpoints.login.skipFirst5Characters
-        makePOSTRequest(url: url, skipFirst5Characters: skipFirst5Characters, responseType: LoginResponse.self, body: request) { (response, error) in
+        makePOSTRequest(url: url, skipFirst5Characters: skipFirst5Characters, responseType: LoginResponse.self, body: body) { (response, error) in
             if let response = response {
                 Session.accountId = response.account.key
                 Session.sessionId = response.session.id
                 completion(true, nil)
                 
+            } else {
+                completion(false, error)
+            }
+        }
+    }
+    
+    class func getUserData(completion: @escaping (Bool, Error?) -> Void) {
+        let url = Endpoints.getUserDetails(Session.accountId).url
+        let skipFirst5Characters = Endpoints.login.skipFirst5Characters
+        makeGETRequest(url: url, skipFirst5Characters: skipFirst5Characters, responseType: UserDataResponse.self) { (response, error) in
+            if let response = response {
+                Session.firstName = response.firstName
+                Session.lastName = response.lastName
+                completion(true, nil)
             } else {
                 completion(false, error)
             }
