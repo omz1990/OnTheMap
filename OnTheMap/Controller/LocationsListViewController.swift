@@ -76,4 +76,8 @@ class LocationsListViewController: UIViewController, UITableViewDataSource, UITa
         activityIndicator.startAnimating()
         UdacityClient.getStudentLocations(completion: handleGetStudentLocationsResponse(success:error:))
     }
+    
+    @IBAction func openAddLocationModal(_ sender: Any) {
+        performSegue(withIdentifier: "openAddLocationModalSegue", sender: nil)
+    }
 }

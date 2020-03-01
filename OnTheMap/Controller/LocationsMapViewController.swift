@@ -49,6 +49,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
         
         // When the array is complete, we add the annotations to the map.
         self.mapView.addAnnotations(annotations)
+        self.mapView.showAnnotations(annotations, animated: true)
     }
         
     // MARK: - MKMapViewDelegate
@@ -119,4 +120,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
         UdacityClient.getStudentLocations(completion: handleGetStudentLocationsResponse(success:error:))
     }
 
+    @IBAction func openAddLocationModal(_ sender: Any) {
+        performSegue(withIdentifier: "openAddLocationModalSegue", sender: nil)
+    }
 }

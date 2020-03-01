@@ -19,6 +19,8 @@
 		5686DCCE240AA8510081F73F /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCCD240AA8510081F73F /* LocationModel.swift */; };
 		5686DCD0240BB5CA0081F73F /* LocationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCCF240BB5CA0081F73F /* LocationsListViewController.swift */; };
 		5686DCD2240BBD870081F73F /* StudentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCD1240BBD870081F73F /* StudentLocationCell.swift */; };
+		5686DCD4240BCCF60081F73F /* FindLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCD3240BCCF60081F73F /* FindLocationViewController.swift */; };
+		5686DCD6240BCD680081F73F /* ConfirmLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCD5240BCD680081F73F /* ConfirmLocationViewController.swift */; };
 		56CA238D24027843000D1CD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CA238C24027843000D1CD0 /* AppDelegate.swift */; };
 		56CA238F24027843000D1CD0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CA238E24027843000D1CD0 /* SceneDelegate.swift */; };
 		56CA239124027843000D1CD0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CA239024027843000D1CD0 /* LoginViewController.swift */; };
@@ -42,6 +44,8 @@
 		5686DCCD240AA8510081F73F /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		5686DCCF240BB5CA0081F73F /* LocationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListViewController.swift; sourceTree = "<group>"; };
 		5686DCD1240BBD870081F73F /* StudentLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationCell.swift; sourceTree = "<group>"; };
+		5686DCD3240BCCF60081F73F /* FindLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLocationViewController.swift; sourceTree = "<group>"; };
+		5686DCD5240BCD680081F73F /* ConfirmLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmLocationViewController.swift; sourceTree = "<group>"; };
 		56CA238924027843000D1CD0 /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CA238C24027843000D1CD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56CA238E24027843000D1CD0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 				56CA239024027843000D1CD0 /* LoginViewController.swift */,
 				5686DCCB240AA4DC0081F73F /* LocationsMapViewController.swift */,
 				5686DCCF240BB5CA0081F73F /* LocationsListViewController.swift */,
+				5686DCD3240BCCF60081F73F /* FindLocationViewController.swift */,
+				5686DCD5240BCD680081F73F /* ConfirmLocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 				5686DCC0240A92470081F73F /* CreateSessionUdacityRequest.swift in Sources */,
 				5686DCC8240A970D0081F73F /* LoginResponse.swift in Sources */,
 				56F4DAF02402966B00F859C3 /* StudentLocationsResponse.swift in Sources */,
+				5686DCD6240BCD680081F73F /* ConfirmLocationViewController.swift in Sources */,
 				5686DCCA240A9C280081F73F /* UserDataResponse.swift in Sources */,
 				5686DCC4240A94540081F73F /* AccountResponse.swift in Sources */,
 				56CA239124027843000D1CD0 /* LoginViewController.swift in Sources */,
@@ -256,6 +263,7 @@
 				56CA238D24027843000D1CD0 /* AppDelegate.swift in Sources */,
 				5686DCD0240BB5CA0081F73F /* LocationsListViewController.swift in Sources */,
 				56CA238F24027843000D1CD0 /* SceneDelegate.swift in Sources */,
+				5686DCD4240BCCF60081F73F /* FindLocationViewController.swift in Sources */,
 				5686DCCC240AA4DC0081F73F /* LocationsMapViewController.swift in Sources */,
 				56F4DAEE2402964A00F859C3 /* StudentLocation.swift in Sources */,
 				5686DCBE240A902D0081F73F /* ErrorResponse.swift in Sources */,
