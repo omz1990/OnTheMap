@@ -21,6 +21,9 @@
 		5686DCD2240BBD870081F73F /* StudentLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCD1240BBD870081F73F /* StudentLocationCell.swift */; };
 		5686DCD4240BCCF60081F73F /* FindLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCD3240BCCF60081F73F /* FindLocationViewController.swift */; };
 		5686DCD6240BCD680081F73F /* ConfirmLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCD5240BCD680081F73F /* ConfirmLocationViewController.swift */; };
+		5686DCD8240BFA0A0081F73F /* SendStudentLocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCD7240BFA0A0081F73F /* SendStudentLocationRequest.swift */; };
+		5686DCDA240BFACB0081F73F /* PostStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCD9240BFACB0081F73F /* PostStudentLocationResponse.swift */; };
+		5686DCDC240BFC3C0081F73F /* PutStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686DCDB240BFC3C0081F73F /* PutStudentLocationResponse.swift */; };
 		56CA238D24027843000D1CD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CA238C24027843000D1CD0 /* AppDelegate.swift */; };
 		56CA238F24027843000D1CD0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CA238E24027843000D1CD0 /* SceneDelegate.swift */; };
 		56CA239124027843000D1CD0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CA239024027843000D1CD0 /* LoginViewController.swift */; };
@@ -46,6 +49,9 @@
 		5686DCD1240BBD870081F73F /* StudentLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationCell.swift; sourceTree = "<group>"; };
 		5686DCD3240BCCF60081F73F /* FindLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLocationViewController.swift; sourceTree = "<group>"; };
 		5686DCD5240BCD680081F73F /* ConfirmLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmLocationViewController.swift; sourceTree = "<group>"; };
+		5686DCD7240BFA0A0081F73F /* SendStudentLocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendStudentLocationRequest.swift; sourceTree = "<group>"; };
+		5686DCD9240BFACB0081F73F /* PostStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStudentLocationResponse.swift; sourceTree = "<group>"; };
+		5686DCDB240BFC3C0081F73F /* PutStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutStudentLocationResponse.swift; sourceTree = "<group>"; };
 		56CA238924027843000D1CD0 /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CA238C24027843000D1CD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56CA238E24027843000D1CD0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +156,8 @@
 				5686DCC5240A94880081F73F /* SessionResponse.swift */,
 				5686DCC7240A970D0081F73F /* LoginResponse.swift */,
 				5686DCC9240A9C270081F73F /* UserDataResponse.swift */,
+				5686DCD9240BFACB0081F73F /* PostStudentLocationResponse.swift */,
+				5686DCDB240BFC3C0081F73F /* PutStudentLocationResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -159,6 +167,7 @@
 			children = (
 				5686DCC1240A92580081F73F /* CreateSessionRequest.swift */,
 				5686DCBF240A92470081F73F /* CreateSessionUdacityRequest.swift */,
+				5686DCD7240BFA0A0081F73F /* SendStudentLocationRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -250,6 +259,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5686DCDC240BFC3C0081F73F /* PutStudentLocationResponse.swift in Sources */,
+				5686DCD8240BFA0A0081F73F /* SendStudentLocationRequest.swift in Sources */,
 				5686DCC6240A94880081F73F /* SessionResponse.swift in Sources */,
 				5686DCD2240BBD870081F73F /* StudentLocationCell.swift in Sources */,
 				5686DCC0240A92470081F73F /* CreateSessionUdacityRequest.swift in Sources */,
@@ -268,6 +279,7 @@
 				56F4DAEE2402964A00F859C3 /* StudentLocation.swift in Sources */,
 				5686DCBE240A902D0081F73F /* ErrorResponse.swift in Sources */,
 				5686DCCE240AA8510081F73F /* LocationModel.swift in Sources */,
+				5686DCDA240BFACB0081F73F /* PostStudentLocationResponse.swift in Sources */,
 				5686DCC2240A92580081F73F /* CreateSessionRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

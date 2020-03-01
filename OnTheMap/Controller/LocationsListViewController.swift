@@ -80,4 +80,10 @@ class LocationsListViewController: UIViewController, UITableViewDataSource, UITa
     @IBAction func openAddLocationModal(_ sender: Any) {
         performSegue(withIdentifier: "openAddLocationModalSegue", sender: nil)
     }
+    
+    @IBAction func logoutTapped(_ sender: Any) {
+        UdacityClient.logout {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }

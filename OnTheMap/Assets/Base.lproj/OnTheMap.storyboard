@@ -145,7 +145,11 @@
                         <viewLayoutGuide key="safeArea" id="k2W-Ly-0FV"/>
                     </view>
                     <navigationItem key="navigationItem" title="On the Map" id="A2Y-s5-UT7">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="OcN-qO-Cg9"/>
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="OcN-qO-Cg9">
+                            <connections>
+                                <action selector="logoutTapped:" destination="Tn7-is-Gu4" id="vgv-st-HKU"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="UE1-AP-ehH">
                                 <connections>
@@ -369,7 +373,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="On the Map" id="vbA-Yr-ttJ">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="ehr-JR-wVE"/>
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="ehr-JR-wVE">
+                            <connections>
+                                <action selector="logoutTapped:" destination="1v0-JR-ERO" id="IVY-cw-ohl"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="WBp-87-pVX">
                                 <connections>
@@ -471,6 +479,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i5z-Qu-GW0"/>
+        <segue reference="cvx-b5-YfT"/>
     </inferredMetricsTieBreakers>
 </document>
