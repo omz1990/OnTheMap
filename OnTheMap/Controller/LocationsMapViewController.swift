@@ -83,7 +83,6 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
             if let toOpen = view.annotation?.subtitle {
                 let mediaUrl = URL(string: toOpen ?? "")
                 if let url = mediaUrl {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     UIApplication.shared.open(url, options: [:]) { (success) in
                         if (!success) {
                             self.showAlert(title: "Error", message: "Invalid URL")
