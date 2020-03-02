@@ -29,6 +29,10 @@ class LocationsMapViewController: LocationsBaseViewController, MKMapViewDelegate
     // Update the map with pins
     private func populateMapData() {
         let locations = LocationModel.studentLocations
+        
+        // Remove previous annotations
+        mapView.removeAnnotations(mapView.annotations)
+        
         var annotations = [MKPointAnnotation]()
         
         for location in locations {
@@ -51,9 +55,9 @@ class LocationsMapViewController: LocationsBaseViewController, MKMapViewDelegate
         }
         
         // When the array is complete, we add the annotations to the map.
-        self.mapView.addAnnotations(annotations)
+        mapView.addAnnotations(annotations)
         // Animate to a location on the map with pins visible
-        self.mapView.showAnnotations(annotations, animated: true)
+        mapView.showAnnotations(annotations, animated: true)
     }
     
     // Set Map Pins UI
@@ -88,15 +92,15 @@ class LocationsMapViewController: LocationsBaseViewController, MKMapViewDelegate
     // MARK: Handle API Responses
     private func handleGetStudentLocationsResponse(success: Bool, error: Error?) {
         activityIndicator.stopAnimating()
-        if (success) {
-            self.populateMapData()
+        if success {
+            populateMapData()
         } else {
-            self.showAlert(title: "Error", message: error?.localizedDescription ?? "Could not fetch locations")
+            showAlert(title: "Error", message: error?.localizedDescription ?? "Could not fetch locations")
         }
     }
     
     private func fetchLocationsData() {
-        self.activityIndicator?.startAnimating()
+        activityIndicator?.startAnimating()
         UdacityClient.getStudentLocations(completion: handleGetStudentLocationsResponse(success:error:))
     }
     

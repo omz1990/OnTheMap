@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
+class ConfirmLocationViewController: LocationsBaseViewController, MKMapViewDelegate {
 
     // MARK: Class variables
     @IBOutlet private weak var mapVIew: MKMapView!
@@ -70,7 +70,7 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
         if (LocationModel.studentLocations.contains{$0.uniqueKey == UdacityClient.Session.accountId}) {
             let currentStudentInformation = LocationModel.studentLocations.filter{ $0.uniqueKey == UdacityClient.Session.accountId }.first
             if let objectId = currentStudentInformation?.objectId {
-                self.studentInformation.objectId = objectId
+                studentInformation.objectId = objectId
                // Make PUT request
                 UdacityClient.updateStudentLocation(studentInformation: studentInformation, completion: handleUpdateStudentLocationResponse(success:error:))
             }
@@ -84,7 +84,7 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     private func handlePostStudentLocationResponse(objectId: String?, error: Error?) {
         setSendingData(false)
         if let objectId = objectId {
-            self.studentInformation.objectId = objectId
+            studentInformation.objectId = objectId
             LocationModel.studentLocations.insert(self.studentInformation, at: 0)
             self.dismiss(animated: true, completion: nil)
         } else {
@@ -106,17 +106,7 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: Class Utility Functions
     private func setSendingData(_ isSending: Bool) {
-        if (isSending) {
-            self.activityIndicator?.startAnimating()
-        } else {
-            self.activityIndicator?.stopAnimating()
-        }
-        self.finishButton?.isEnabled = !isSending
-    }
-    
-    private func showAlert(title: String, message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertVC, animated: true)
+        isSending ? activityIndicator?.startAnimating() : activityIndicator?.stopAnimating()
+        finishButton?.isEnabled = !isSending
     }
 }

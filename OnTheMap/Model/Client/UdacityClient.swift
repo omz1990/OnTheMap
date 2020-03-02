@@ -32,7 +32,7 @@ class UdacityClient {
             switch self {
                 case .session: return "\(Endpoints.base)/session"
                 case .getUserDetails(let userId): return "\(Endpoints.base)/users/\(userId)"
-                case .getStudentLocations: return "\(Endpoints.base)/StudentLocation?order=-updatedAt"
+                case .getStudentLocations: return "\(Endpoints.base)/StudentLocation?order=-updatedAt&limit=100"
                 case .postStudentLocation: return "\(Endpoints.base)/StudentLocation"
                 case .putStudentLocation(let objectId): return "\(Endpoints.base)/StudentLocation/\(objectId)"
             }
