@@ -12,7 +12,7 @@ import MapKit
 class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapVIew: MKMapView!
-    var studentInformation: StudentLocation!
+    var studentInformation: StudentInformation!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var finishButton: UIButton!
     

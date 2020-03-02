@@ -239,7 +239,7 @@ class UdacityClient {
         }
     }
     
-    class func postStudentLocation(studentInformation: StudentLocation, completion: @escaping (String?, Error?) -> Void) {
+    class func postStudentLocation(studentInformation: StudentInformation, completion: @escaping (String?, Error?) -> Void) {
         let body = SendStudentLocationRequest(uniqueKey: studentInformation.uniqueKey, firstName: studentInformation.firstName, lastName: studentInformation.lastName, mapString: studentInformation.mapString, mediaURL: studentInformation.mediaURL, latitude: studentInformation.latitude, longitude: studentInformation.longitude)
         let url = Endpoints.postStudentLocation.url
         let skipFirst5Characters = Endpoints.postStudentLocation.skipFirst5Characters
@@ -252,7 +252,7 @@ class UdacityClient {
         }
     }
     
-    class func updateStudentLocation(studentInformation: StudentLocation, completion: @escaping (Bool, Error?) -> Void) {
+    class func updateStudentLocation(studentInformation: StudentInformation, completion: @escaping (Bool, Error?) -> Void) {
         let body = SendStudentLocationRequest(uniqueKey: studentInformation.uniqueKey, firstName: studentInformation.firstName, lastName: studentInformation.lastName, mapString: studentInformation.mapString, mediaURL: studentInformation.mediaURL, latitude: studentInformation.latitude, longitude: studentInformation.longitude)
         let url = Endpoints.putStudentLocation(studentInformation.objectId).url
         let skipFirst5Characters = Endpoints.putStudentLocation(studentInformation.objectId).skipFirst5Characters

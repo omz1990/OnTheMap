@@ -64,7 +64,7 @@ class FindLocationViewController: UIViewController {
             let confirmLocationVC = segue.destination as! ConfirmLocationViewController
             let lat = Float(self.locationCoords?.latitude ?? 0)
             let long = Float(self.locationCoords?.longitude ?? 0)
-            let studentInformation = StudentLocation(objectId: UdacityClient.Session.accountId, uniqueKey: UdacityClient.Session.accountId, firstName: UdacityClient.Session.firstName, lastName: UdacityClient.Session.lastName, mapString: locationTextField.text ?? "", mediaURL: linkTextField.text ?? "", latitude: lat, longitude: long, createdAt: "", updatedAt: "")
+            let studentInformation = StudentInformation(objectId: UdacityClient.Session.accountId, uniqueKey: UdacityClient.Session.accountId, firstName: UdacityClient.Session.firstName, lastName: UdacityClient.Session.lastName, mapString: locationTextField.text ?? "", mediaURL: linkTextField.text ?? "", latitude: lat, longitude: long, createdAt: "", updatedAt: "")
             confirmLocationVC.studentInformation = studentInformation
         }
     }

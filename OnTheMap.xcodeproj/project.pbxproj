@@ -30,7 +30,7 @@
 		56CA239424027843000D1CD0 /* OnTheMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CA239224027843000D1CD0 /* OnTheMap.storyboard */; };
 		56CA239624027845000D1CD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CA239524027845000D1CD0 /* Assets.xcassets */; };
 		56CA239924027845000D1CD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CA239724027845000D1CD0 /* LaunchScreen.storyboard */; };
-		56F4DAEE2402964A00F859C3 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4DAED2402964A00F859C3 /* StudentLocation.swift */; };
+		56F4DAEE2402964A00F859C3 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4DAED2402964A00F859C3 /* StudentInformation.swift */; };
 		56F4DAF02402966B00F859C3 /* StudentLocationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4DAEF2402966B00F859C3 /* StudentLocationsResponse.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +60,7 @@
 		56CA239524027845000D1CD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56CA239824027845000D1CD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		56CA239A24027845000D1CD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		56F4DAED2402964A00F859C3 /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
+		56F4DAED2402964A00F859C3 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		56F4DAEF2402966B00F859C3 /* StudentLocationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationsResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,7 +149,7 @@
 		56F4DAE9240295E900F859C3 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				56F4DAED2402964A00F859C3 /* StudentLocation.swift */,
+				56F4DAED2402964A00F859C3 /* StudentInformation.swift */,
 				56F4DAEF2402966B00F859C3 /* StudentLocationsResponse.swift */,
 				5686DCBD240A902D0081F73F /* ErrorResponse.swift */,
 				5686DCC3240A94540081F73F /* AccountResponse.swift */,
@@ -276,7 +276,7 @@
 				56CA238F24027843000D1CD0 /* SceneDelegate.swift in Sources */,
 				5686DCD4240BCCF60081F73F /* FindLocationViewController.swift in Sources */,
 				5686DCCC240AA4DC0081F73F /* LocationsMapViewController.swift in Sources */,
-				56F4DAEE2402964A00F859C3 /* StudentLocation.swift in Sources */,
+				56F4DAEE2402964A00F859C3 /* StudentInformation.swift in Sources */,
 				5686DCBE240A902D0081F73F /* ErrorResponse.swift in Sources */,
 				5686DCCE240AA8510081F73F /* LocationModel.swift in Sources */,
 				5686DCDA240BFACB0081F73F /* PostStudentLocationResponse.swift in Sources */,
