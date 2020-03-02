@@ -73,12 +73,22 @@ class LocationsListViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     private func fetchLocationsData() {
-        activityIndicator.startAnimating()
+        self.activityIndicator?.startAnimating()
         UdacityClient.getStudentLocations(completion: handleGetStudentLocationsResponse(success:error:))
     }
     
     @IBAction func openAddLocationModal(_ sender: Any) {
-        performSegue(withIdentifier: "openAddLocationModalSegue", sender: nil)
+        if (LocationModel.studentLocations.contains{$0.uniqueKey == UdacityClient.Session.accountId}) {
+            let message = "You have already posted a student location. Would you like to Overwrite your current location?"
+            let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "Overwrite", style: .default, handler: { (action) in
+                self.performSegue(withIdentifier: "openAddLocationModalSegue", sender: nil)
+            }))
+            alertVC.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+            self.present(alertVC, animated: true)
+        } else {
+            self.performSegue(withIdentifier: "openAddLocationModalSegue", sender: nil)
+        }
     }
     
     @IBAction func logoutTapped(_ sender: Any) {

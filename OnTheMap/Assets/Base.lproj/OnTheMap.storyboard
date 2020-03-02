@@ -350,27 +350,22 @@
                                     <outlet property="delegate" destination="1v0-JR-ERO" id="L3M-lL-6dL"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="I65-RD-e2R">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="I65-RD-e2R">
                                 <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="wUD-tP-Rpr" firstAttribute="top" secondItem="TTd-Kg-fVj" secondAttribute="top" id="1kY-q5-0TZ"/>
-                            <constraint firstItem="TTd-Kg-fVj" firstAttribute="trailing" secondItem="wUD-tP-Rpr" secondAttribute="trailing" id="9Bm-5X-nZE"/>
-                            <constraint firstItem="TTd-Kg-fVj" firstAttribute="bottom" secondItem="I65-RD-e2R" secondAttribute="bottom" id="DHL-Nz-ioe"/>
-                            <constraint firstItem="I65-RD-e2R" firstAttribute="leading" secondItem="TTd-Kg-fVj" secondAttribute="leading" id="DyD-2E-SrA"/>
-                            <constraint firstItem="I65-RD-e2R" firstAttribute="top" secondItem="TTd-Kg-fVj" secondAttribute="top" id="peW-1K-BwK"/>
-                            <constraint firstItem="TTd-Kg-fVj" firstAttribute="trailing" secondItem="I65-RD-e2R" secondAttribute="trailing" id="pqP-Zb-eNd"/>
-                            <constraint firstItem="TTd-Kg-fVj" firstAttribute="bottom" secondItem="wUD-tP-Rpr" secondAttribute="bottom" id="yHn-t4-jG3"/>
-                            <constraint firstItem="wUD-tP-Rpr" firstAttribute="leading" secondItem="TTd-Kg-fVj" secondAttribute="leading" id="z5g-jH-4da"/>
+                            <constraint firstItem="I65-RD-e2R" firstAttribute="top" secondItem="TTd-Kg-fVj" secondAttribute="top" id="0w8-yb-g7K"/>
+                            <constraint firstItem="wUD-tP-Rpr" firstAttribute="bottom" secondItem="TTd-Kg-fVj" secondAttribute="bottom" id="25D-cf-wyj"/>
+                            <constraint firstItem="I65-RD-e2R" firstAttribute="bottom" secondItem="TTd-Kg-fVj" secondAttribute="bottom" id="D21-fu-i6L"/>
+                            <constraint firstItem="I65-RD-e2R" firstAttribute="trailing" secondItem="TTd-Kg-fVj" secondAttribute="trailing" id="MJc-Jb-uhF"/>
+                            <constraint firstItem="wUD-tP-Rpr" firstAttribute="leading" secondItem="TTd-Kg-fVj" secondAttribute="leading" id="NpG-yp-L2O"/>
+                            <constraint firstItem="wUD-tP-Rpr" firstAttribute="top" secondItem="TTd-Kg-fVj" secondAttribute="top" id="W4y-b1-p72"/>
+                            <constraint firstItem="I65-RD-e2R" firstAttribute="leading" secondItem="TTd-Kg-fVj" secondAttribute="leading" id="eeX-IS-bex"/>
+                            <constraint firstItem="wUD-tP-Rpr" firstAttribute="trailing" secondItem="TTd-Kg-fVj" secondAttribute="trailing" id="wGu-SK-Gd3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TTd-Kg-fVj"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="I65-RD-e2R"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="On the Map" id="vbA-Yr-ttJ">
                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="ehr-JR-wVE">
@@ -448,21 +443,30 @@
                                     <action selector="finishTapped:" destination="I5K-Gb-8Nt" eventType="touchUpInside" id="C9V-NA-9jh"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="0bx-jm-kCo">
+                                <rect key="frame" x="0.0" y="56" width="414" height="724"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="dTG-be-Nf3" firstAttribute="bottom" secondItem="QNZ-fI-Jvx" secondAttribute="bottom" id="2Na-t4-9R8"/>
+                            <constraint firstItem="dTG-be-Nf3" firstAttribute="trailing" secondItem="0bx-jm-kCo" secondAttribute="trailing" id="8xD-0a-LFn"/>
                             <constraint firstItem="QNZ-fI-Jvx" firstAttribute="top" secondItem="dTG-be-Nf3" secondAttribute="top" id="AFn-61-n4B"/>
                             <constraint firstItem="dTG-be-Nf3" firstAttribute="bottom" secondItem="kl1-1j-r86" secondAttribute="bottom" constant="20" id="Fi4-Pb-cS3"/>
+                            <constraint firstItem="0bx-jm-kCo" firstAttribute="leading" secondItem="dTG-be-Nf3" secondAttribute="leading" id="eAT-9k-5Yc"/>
                             <constraint firstItem="dTG-be-Nf3" firstAttribute="trailing" secondItem="QNZ-fI-Jvx" secondAttribute="trailing" id="gkD-Un-lY9"/>
                             <constraint firstItem="kl1-1j-r86" firstAttribute="leading" secondItem="dTG-be-Nf3" secondAttribute="leading" constant="20" id="i5c-LS-4Fc"/>
+                            <constraint firstItem="dTG-be-Nf3" firstAttribute="bottom" secondItem="0bx-jm-kCo" secondAttribute="bottom" constant="28" id="kHj-4V-VoP"/>
                             <constraint firstItem="QNZ-fI-Jvx" firstAttribute="leading" secondItem="dTG-be-Nf3" secondAttribute="leading" id="mj0-ce-8wb"/>
+                            <constraint firstItem="0bx-jm-kCo" firstAttribute="top" secondItem="dTG-be-Nf3" secondAttribute="top" id="qML-MB-jmP"/>
                             <constraint firstItem="dTG-be-Nf3" firstAttribute="trailing" secondItem="kl1-1j-r86" secondAttribute="trailing" constant="20" id="vAu-3g-12R"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dTG-be-Nf3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="jhA-bf-Xd1"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="0bx-jm-kCo" id="qh2-sz-fmL"/>
+                        <outlet property="finishButton" destination="kl1-1j-r86" id="mp5-oa-Dny"/>
                         <outlet property="mapVIew" destination="QNZ-fI-Jvx" id="nub-Zi-rhJ"/>
                     </connections>
                 </viewController>

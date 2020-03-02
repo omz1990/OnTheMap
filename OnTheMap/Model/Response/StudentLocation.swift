@@ -9,7 +9,7 @@
 import Foundation
 
 struct StudentLocation: Codable {
-    let objectId: String
+    var objectId: String
     let uniqueKey: String
     let firstName: String
     let lastName: String

@@ -13,7 +13,9 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapVIew: MKMapView!
     var studentInformation: StudentLocation!
-
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var finishButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         populateMapData()
@@ -59,6 +61,53 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     }
 
     @IBAction func finishTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        setSendingData(true)
+        if (LocationModel.studentLocations.contains{$0.uniqueKey == UdacityClient.Session.accountId}) {
+            let currentStudentInformation = LocationModel.studentLocations.filter{ $0.uniqueKey == UdacityClient.Session.accountId }.first
+            if let objectId = currentStudentInformation?.objectId {
+                self.studentInformation.objectId = objectId
+                UdacityClient.updateStudentLocation(studentInformation: studentInformation, completion: handleUpdateStudentLocationResponse(success:error:))
+            }
+            
+        } else {
+            UdacityClient.postStudentLocation(studentInformation: studentInformation, completion: handlePostStudentLocationResponse(objectId:error:))
+        }
+    }
+    
+    private func handlePostStudentLocationResponse(objectId: String?, error: Error?) {
+        setSendingData(false)
+        if let objectId = objectId {
+            self.studentInformation.objectId = objectId
+            LocationModel.studentLocations.insert(self.studentInformation, at: 0)
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            showAlert(title: "Error", message: error?.localizedDescription ?? "Could not send location. Try again.")
+        }
+    }
+    
+    private func handleUpdateStudentLocationResponse(success: Bool, error: Error?) {
+        setSendingData(false)
+        if (success) {
+            LocationModel.studentLocations = LocationModel.studentLocations.filter { $0.uniqueKey != UdacityClient.Session.accountId }
+            LocationModel.studentLocations.insert(self.studentInformation, at: 0)
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            showAlert(title: "Error", message: error?.localizedDescription ?? "Could not update location. Try again.")
+        }
+    }
+    
+    private func setSendingData(_ isSending: Bool) {
+        if (isSending) {
+            self.activityIndicator?.startAnimating()
+        } else {
+            self.activityIndicator?.stopAnimating()
+        }
+        self.finishButton?.isEnabled = !isSending
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertVC, animated: true)
     }
 }

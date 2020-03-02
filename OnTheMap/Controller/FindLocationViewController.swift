@@ -71,13 +71,13 @@ class FindLocationViewController: UIViewController {
     
     private func setGeocodingLocation(_ isGeocoding: Bool) {
         if (isGeocoding) {
-            activityIndicator.startAnimating()
+            self.activityIndicator?.startAnimating()
         } else {
-            activityIndicator.stopAnimating()
+            self.activityIndicator?.stopAnimating()
         }
         
-        locationTextField.isEnabled = !isGeocoding
-        linkTextField.isEnabled = !isGeocoding
+        self.locationTextField?.isEnabled = !isGeocoding
+        self.linkTextField?.isEnabled = !isGeocoding
     }
 
 }

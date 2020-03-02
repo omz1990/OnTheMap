@@ -256,8 +256,8 @@ class UdacityClient {
         let body = SendStudentLocationRequest(uniqueKey: studentInformation.uniqueKey, firstName: studentInformation.firstName, lastName: studentInformation.lastName, mapString: studentInformation.mapString, mediaURL: studentInformation.mediaURL, latitude: studentInformation.latitude, longitude: studentInformation.longitude)
         let url = Endpoints.putStudentLocation(studentInformation.objectId).url
         let skipFirst5Characters = Endpoints.putStudentLocation(studentInformation.objectId).skipFirst5Characters
-        makePUTRequest(url: url, skipFirst5Characters: skipFirst5Characters, responseType: PostStudentLocationResponse.self, body: body) { (response, error) in
-            if let response = response {
+        makePUTRequest(url: url, skipFirst5Characters: skipFirst5Characters, responseType: PutStudentLocationResponse.self, body: body) { (response, error) in
+            if response != nil {
                 completion(true, nil)
             } else {
                 completion(false, error)

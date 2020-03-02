@@ -93,13 +93,13 @@ class LoginViewController: UIViewController {
     
     private func setLoggingIn(_ loggingIn: Bool) {
         if loggingIn {
-            activityIndicator.startAnimating()
+            self.activityIndicator?.startAnimating()
         } else {
-            activityIndicator.stopAnimating()
+            self.activityIndicator?.stopAnimating()
         }
-        emailTextField.isEnabled = !loggingIn
-        passwordTextField.isEnabled = !loggingIn
-        loginButton.isEnabled = !loggingIn
+        self.emailTextField?.isEnabled = !loggingIn
+        self.passwordTextField?.isEnabled = !loggingIn
+        self.loginButton?.isEnabled = !loggingIn
     }
     
     private func showLoginFailure(message: String) {
