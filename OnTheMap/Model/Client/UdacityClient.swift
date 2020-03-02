@@ -10,6 +10,7 @@ import Foundation
 
 class UdacityClient {
     
+    // MARK: Session struct to hold static user data
     struct Session {
         static var firstName = ""
         static var lastName = ""
@@ -17,6 +18,7 @@ class UdacityClient {
         static var sessionId = ""
     }
     
+    // MARK: Define all required Endpoints
     enum Endpoints {
         static let base = "https://onthemap-api.udacity.com/v1"
         
@@ -36,6 +38,7 @@ class UdacityClient {
             }
         }
         
+        // Some API calls require the first 5 characters to be removed
         var skipFirst5Characters: Bool {
             switch self {
                 case .session: return true
@@ -51,6 +54,7 @@ class UdacityClient {
         }
     }
     
+    // MARK: Generic Functions for making API calls
     private class func makeGETRequest<ResponseType: Decodable>(url: URL, skipFirst5Characters: Bool, responseType: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionDataTask {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
@@ -60,7 +64,7 @@ class UdacityClient {
                 return
             }
             
-            /* subset response data! */
+            // Subset response data if required
             let newData = skipFirst5Characters ? data.subdata(in: 5..<data.count) : data
             
             let decoder = JSONDecoder()
@@ -102,7 +106,7 @@ class UdacityClient {
                 return
             }
             
-            /* subset response data! */
+            // Subset response data if required
             let newData = skipFirst5Characters ? data.subdata(in: 5..<data.count) : data
             
             let decoder = JSONDecoder()
@@ -141,7 +145,7 @@ class UdacityClient {
                 return
             }
             
-            /* subset response data! */
+            // Subset response data if required
             let newData = skipFirst5Characters ? data.subdata(in: 5..<data.count) : data
             
             let decoder = JSONDecoder()
@@ -166,6 +170,7 @@ class UdacityClient {
         task.resume()
     }
     
+    // MARK: Authentication API Calls
     class func login(userName: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         let userData = CreateSessionUdacityRequest(username: userName, password: password)
         let body = CreateSessionRequest(userData: userData)
@@ -222,6 +227,7 @@ class UdacityClient {
         }
     }
     
+    // MARK: Student Location API calls
     class func getStudentLocations(completion: @escaping (Bool, Error?) -> Void) {
         let url = Endpoints.getStudentLocations.url
         let skipFirst5Characters = Endpoints.getStudentLocations.skipFirst5Characters

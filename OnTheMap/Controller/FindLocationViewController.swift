@@ -11,22 +11,24 @@ import CoreLocation
 
 class FindLocationViewController: UIViewController {
 
-    @IBOutlet weak var locationTextField: UITextField!
-    @IBOutlet weak var linkTextField: UITextField!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+    // MARK: Class variables
+    @IBOutlet private weak var locationTextField: UITextField!
+    @IBOutlet private weak var linkTextField: UITextField!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     private var locationCoords: CLLocationCoordinate2D!
     
-    @IBAction func findLocationTapped(_ sender: Any) {
+    // MARK: UI Listeners
+    @IBAction private func findLocationTapped(_ sender: Any) {
         setGeocodingLocation(true)
         getCoordinate(addressString: locationTextField?.text ?? "", completionHandler: handleGeocodingResult(locationCoordinate:error:))
     }
     
-    @IBAction func cancelTapper(_ sender: Any) {
+    @IBAction private func cancelTapper(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func getCoordinate( addressString : String,
+    // MARK: Geocode the provided address
+    private func getCoordinate( addressString : String,
             completionHandler: @escaping(CLLocationCoordinate2D?, NSError?) -> Void ) {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(addressString) { (placemarks, error) in
@@ -43,6 +45,7 @@ class FindLocationViewController: UIViewController {
         }
     }
     
+    // MARK: Handle API Responses
     private func handleGeocodingResult(locationCoordinate: CLLocationCoordinate2D?, error: NSError?) {
         setGeocodingLocation(false)
         if let location = locationCoordinate {
@@ -53,12 +56,14 @@ class FindLocationViewController: UIViewController {
         }
     }
     
+    // MARK: Class Utility Functions
     private func showAlert(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertVC, animated: true)
     }
     
+    // Prepare the data for ConfirmLocationViewController and dispatch segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "confirmLocationSegue" {
             let confirmLocationVC = segue.destination as! ConfirmLocationViewController
@@ -69,6 +74,7 @@ class FindLocationViewController: UIViewController {
         }
     }
     
+    // Update the UI state while geocoding is in progress
     private func setGeocodingLocation(_ isGeocoding: Bool) {
         if (isGeocoding) {
             self.activityIndicator?.startAnimating()
@@ -79,5 +85,4 @@ class FindLocationViewController: UIViewController {
         self.locationTextField?.isEnabled = !isGeocoding
         self.linkTextField?.isEnabled = !isGeocoding
     }
-
 }

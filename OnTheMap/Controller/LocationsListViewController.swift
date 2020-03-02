@@ -8,15 +8,16 @@
 
 import UIKit
 
-class LocationsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class LocationsListViewController: LocationsBaseViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    // MARK: Class variables
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var tableView: UITableView!
     
-    @IBOutlet weak var tableView: UITableView!
-    
+    // MARK: Initialise UI
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Only fetch the locations if they don't currently exist
         if (LocationModel.studentLocations.count == 0) {
             fetchLocationsData()
         }
@@ -26,6 +27,7 @@ class LocationsListViewController: UIViewController, UITableViewDataSource, UITa
         return LocationModel.studentLocations.count
     }
     
+    // Update the table with data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: StudentLocationCell = tableView.dequeueReusableCell(withIdentifier: "StudentLocationCell") as! StudentLocationCell
         let studentLocation = LocationModel.studentLocations[indexPath.row]
@@ -35,22 +37,10 @@ class LocationsListViewController: UIViewController, UITableViewDataSource, UITa
         return cell
     }
     
+    // Handle Table Cell tap to open the URL
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let studentLocation = LocationModel.studentLocations[indexPath.row]
         openMediaLink(studentLocation.mediaURL)
-    }
-    
-    private func openMediaLink(_ mediaLink: String?) {
-        let mediaUrl = URL(string: mediaLink ?? "")
-        if let url = mediaUrl {
-            UIApplication.shared.open(url, options: [:]) { (success) in
-                if (!success) {
-                    self.showAlert(title: "Error", message: "Invalid URL")
-                }
-            }
-        } else {
-            self.showAlert(title: "Error", message: "Invalid URL")
-        }
     }
     
     private func handleGetStudentLocationsResponse(success: Bool, error: Error?) {
@@ -58,42 +48,26 @@ class LocationsListViewController: UIViewController, UITableViewDataSource, UITa
         if (success) {
             self.tableView.reloadData()
         } else {
-            self.showAlert(title: "Error", message: error?.localizedDescription ?? "Could not fetch locations")
+            showAlert(title: "Error", message: error?.localizedDescription ?? "Could not fetch locations")
         }
     }
     
-    @IBAction func refreshLocatioData(_ sender: Any) {
-        fetchLocationsData()
-    }
-    
-    private func showAlert(title: String, message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertVC, animated: true)
-    }
-    
+    // MARK: Handle API Responses
     private func fetchLocationsData() {
         self.activityIndicator?.startAnimating()
         UdacityClient.getStudentLocations(completion: handleGetStudentLocationsResponse(success:error:))
     }
     
-    @IBAction func openAddLocationModal(_ sender: Any) {
-        if (LocationModel.studentLocations.contains{$0.uniqueKey == UdacityClient.Session.accountId}) {
-            let message = "You have already posted a student location. Would you like to Overwrite your current location?"
-            let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "Overwrite", style: .default, handler: { (action) in
-                self.performSegue(withIdentifier: "openAddLocationModalSegue", sender: nil)
-            }))
-            alertVC.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-            self.present(alertVC, animated: true)
-        } else {
-            self.performSegue(withIdentifier: "openAddLocationModalSegue", sender: nil)
-        }
+    // MARK: UI Listeners
+    @IBAction private func refreshLocatioData(_ sender: Any) {
+        fetchLocationsData()
     }
     
-    @IBAction func logoutTapped(_ sender: Any) {
-        UdacityClient.logout {
-            self.dismiss(animated: true, completion: nil)
-        }
+    @IBAction private func openAddLocationModalTapped(_ sender: Any) {
+        openAddLocationModal()
+    }
+    
+    @IBAction private func logoutTapped(_ sender: Any) {
+        logout()
     }
 }

@@ -11,41 +11,19 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var signupTextView: UITextView!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var signupTextView: UITextView!
+    @IBOutlet private weak var loginButton: UIButton!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: Initialise UI
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getStudentLocations()
         addSignupLink()
     }
-
-    func getStudentLocations() {
-        let request = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/StudentLocation?order=-updatedAt")!)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { data, response, error in
-            guard let data = data else {
-                print("Could not fetch results")
-                return
-            }
-            do {
-                let decoder = JSONDecoder()
-                let responseObject = try decoder.decode(StudentLocationsResponse.self, from: data)
-                print(responseObject)
-                print("Locations length: \(responseObject.results?.count ?? 0)")
-                DispatchQueue.main.async {
-//                    self.performSegue(withIdentifier: "loginComplete", sender: nil)
-                }
-            } catch {
-                print(error)
-            }
-        }
-        task.resume()
-    }
     
+    // Add the Signup link in the text
     private func addSignupLink() {
     
         let attributedString = NSMutableAttributedString(string: "Don't have an account? Sign Up")
@@ -66,11 +44,13 @@ class LoginViewController: UIViewController {
         ]
     }
     
+    // MARK: UI Listener
     @IBAction func loginClick(_ sender: Any) {
         setLoggingIn(true)
         UdacityClient.login(userName: emailTextField.text ?? "", password: passwordTextField.text ?? "", completion: handleLoginResponse(success:error:))
     }
     
+    // MARK: Handle API Responses
     private func handleLoginResponse(success: Bool, error: Error?) {
         if (success) {
             // Get user data
@@ -91,6 +71,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: Class Utility Functions
     private func setLoggingIn(_ loggingIn: Bool) {
         if loggingIn {
             self.activityIndicator?.startAnimating()

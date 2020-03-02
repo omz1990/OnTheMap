@@ -11,11 +11,13 @@ import MapKit
 
 class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
 
-    @IBOutlet weak var mapVIew: MKMapView!
+    // MARK: Class variables
+    @IBOutlet private weak var mapVIew: MKMapView!
     var studentInformation: StudentInformation!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var finishButton: UIButton!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var finishButton: UIButton!
     
+    // MARK: Initialise UI
     override func viewDidLoad() {
         super.viewDidLoad()
         populateMapData()
@@ -41,6 +43,7 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
         self.mapVIew.selectAnnotation(annotation, animated: true)
     }
     
+    // Set Map Pins UI
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
@@ -60,16 +63,20 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
         return pinView
     }
 
-    @IBAction func finishTapped(_ sender: Any) {
+    // MARK: UI Listener
+    @IBAction private func finishTapped(_ sender: Any) {
         setSendingData(true)
+        // Check whether we need to POST or PUT the location based on whether it currently exists in our saved list or not
         if (LocationModel.studentLocations.contains{$0.uniqueKey == UdacityClient.Session.accountId}) {
             let currentStudentInformation = LocationModel.studentLocations.filter{ $0.uniqueKey == UdacityClient.Session.accountId }.first
             if let objectId = currentStudentInformation?.objectId {
                 self.studentInformation.objectId = objectId
+               // Make PUT request
                 UdacityClient.updateStudentLocation(studentInformation: studentInformation, completion: handleUpdateStudentLocationResponse(success:error:))
             }
             
         } else {
+            // Make POST request
             UdacityClient.postStudentLocation(studentInformation: studentInformation, completion: handlePostStudentLocationResponse(objectId:error:))
         }
     }
@@ -85,6 +92,7 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    // MARK: Handle API Responses
     private func handleUpdateStudentLocationResponse(success: Bool, error: Error?) {
         setSendingData(false)
         if (success) {
@@ -96,6 +104,7 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    // MARK: Class Utility Functions
     private func setSendingData(_ isSending: Bool) {
         if (isSending) {
             self.activityIndicator?.startAnimating()

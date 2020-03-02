@@ -9,14 +9,16 @@
 import UIKit
 import MapKit
 
-class LocationsMapViewController: UIViewController, MKMapViewDelegate {
+class LocationsMapViewController: LocationsBaseViewController, MKMapViewDelegate {
 
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    // MARK: Class variables
+    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: Initialise UI
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Only fetch the locations if they don't currently exist
         if (LocationModel.studentLocations.count > 0) {
             populateMapData()
         } else {
@@ -24,6 +26,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    // Update the map with pins
     private func populateMapData() {
         let locations = LocationModel.studentLocations
         var annotations = [MKPointAnnotation]()
@@ -43,20 +46,17 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
             annotation.title = "\(first) \(last)"
             annotation.subtitle = mediaURL
             
-            // Finally we place the annotation in an array of annotations.
+            // Add the annotation to the array of annotations
             annotations.append(annotation)
         }
         
         // When the array is complete, we add the annotations to the map.
         self.mapView.addAnnotations(annotations)
+        // Animate to a location on the map with pins visible
         self.mapView.showAnnotations(annotations, animated: true)
     }
-        
-    // MARK: - MKMapViewDelegate
-
-    // Here we create a view with a "right callout accessory view". You might choose to look into other
-    // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
-    // method in TableViewDataSource.
+    
+    // Set Map Pins UI
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
@@ -76,26 +76,16 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
         return pinView
     }
 
-    
-    // This delegate method is implemented to respond to taps. It opens the system browser
-    // to the URL specified in the annotationViews subtitle property.
+    // Handle Map Pin tap to open the URL
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             if let toOpen = view.annotation?.subtitle {
-                let mediaUrl = URL(string: toOpen ?? "")
-                if let url = mediaUrl {
-                    UIApplication.shared.open(url, options: [:]) { (success) in
-                        if (!success) {
-                            self.showAlert(title: "Error", message: "Invalid URL")
-                        }
-                    }
-                } else {
-                    self.showAlert(title: "Error", message: "Invalid URL")
-                }
+                openMediaLink(toOpen)
             }
         }
     }
     
+    // MARK: Handle API Responses
     private func handleGetStudentLocationsResponse(success: Bool, error: Error?) {
         activityIndicator.stopAnimating()
         if (success) {
@@ -105,37 +95,21 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    @IBAction func refreshLocatioData(_ sender: Any) {
-        fetchLocationsData()
-    }
-    
-    private func showAlert(title: String, message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertVC, animated: true)
-    }
-    
     private func fetchLocationsData() {
         self.activityIndicator?.startAnimating()
         UdacityClient.getStudentLocations(completion: handleGetStudentLocationsResponse(success:error:))
     }
-
-    @IBAction func openAddLocationModal(_ sender: Any) {
-        if (LocationModel.studentLocations.contains{$0.uniqueKey == UdacityClient.Session.accountId}) {
-            let message = "You have already posted a student location. Would you like to Overwrite your current location?"
-            let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "Overwrite", style: .default, handler: { (action) in
-                self.performSegue(withIdentifier: "openAddLocationModalSegue", sender: nil)
-            }))
-            alertVC.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-            self.present(alertVC, animated: true)
-        } else {
-            self.performSegue(withIdentifier: "openAddLocationModalSegue", sender: nil)
-        }
+    
+    // MARK: UI Listeners
+    @IBAction private func refreshLocatioData(_ sender: Any) {
+        fetchLocationsData()
     }
-    @IBAction func logoutTapped(_ sender: Any) {
-        UdacityClient.logout {
-            self.dismiss(animated: true, completion: nil)
-        }
+    
+    @IBAction private func openAddLocationModalTapped(_ sender: Any) {
+        openAddLocationModal()
+    }
+    
+    @IBAction private func logoutTapped(_ sender: Any) {
+        logout()
     }
 }
